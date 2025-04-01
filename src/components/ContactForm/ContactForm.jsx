@@ -1,7 +1,7 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import styles from './ContactForm.module.css';
+import styles from './ContactForm.module.css'; // Підключаємо файл стилів
 
 const ContactForm = ({ onAddContact }) => {
   const validationSchema = Yup.object({
@@ -27,25 +27,35 @@ const ContactForm = ({ onAddContact }) => {
       onSubmit={handleSubmit}
     >
       <Form className={styles.form}>
-        <Field
-          name="name"
-          type="text"
-          placeholder="Name"
-          className={styles.input}
-        />
-        <ErrorMessage name="name" component="div" className={styles.error} />
+        <div className={styles.fieldGroup}>
+          <label htmlFor="name" className={styles.label}>Name</label>
+          <Field
+            name="name"
+            type="text"
+            id="name"
+            placeholder=""
+            className={styles.input}
+          />
+          <ErrorMessage name="name" component="div" className={styles.error} />
+        </div>
 
-        <Field
-          name="number"
-          type="text"
-          placeholder="Phone number"
-          className={styles.input}
-        />
-        <ErrorMessage name="number" component="div" className={styles.error} />
+        <div className={styles.fieldGroup}>
+          <label htmlFor="number" className={styles.label}>Number</label>
+          <Field
+            name="number"
+            type="text"
+            id="number"
+            placeholder=""
+            className={styles.input}
+          />
+          <ErrorMessage name="number" component="div" className={styles.error} />
+        </div>
 
-        <button type="submit" className={styles.button}>
-          Add contact
-        </button>
+        <div className={styles.buttonWrapper}>
+      <button type="submit" className={styles.button}>
+        Add contact
+      </button>
+    </div>
       </Form>
     </Formik>
   );
